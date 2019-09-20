@@ -16,36 +16,26 @@ limitations under the License.
 package cmd
 
 import (
-	"fmt"
-
 	"github.com/spf13/cobra"
+	"github.com/wyb1/prometheusClient/pkg/query"
 )
 
 // queryCmd represents the query command
 var queryCmd = &cobra.Command{
 	Use:   "query",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
-	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("query called")
+	Short: "Sends queries to prometheus",
+	Long:  `Sends queries to prometheus. Accepts a list of queries and will print the response for each query.`,
+	Args:  cobra.MinimumNArgs(1),
+	RunE: func(cmd *cobra.Command, args []string) error {
+		if err := query.ExecuteQuery(args, cmd.Flags()); err != nil {
+			return err
+		}
+		return nil
 	},
 }
 
 func init() {
 	rootCmd.AddCommand(queryCmd)
-
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// queryCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// queryCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	queryCmd.PersistentFlags().String("address", "http://localhost", "The address of the Prometheus to send queries to.")
+	queryCmd.PersistentFlags().String("port", ":9090", "Port to reach prometheus on")
 }
