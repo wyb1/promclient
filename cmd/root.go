@@ -63,6 +63,9 @@ func init() {
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
 	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+
+	rootCmd.PersistentFlags().String("address", "http://localhost", "The address of the Prometheus to send queries to.")
+	rootCmd.PersistentFlags().String("port", ":9090", "Port to reach prometheus on")
 }
 
 // initConfig reads in config file and ENV variables if set.

@@ -27,7 +27,7 @@ var queryCmd = &cobra.Command{
 	Long:  `Sends queries to prometheus. Accepts a list of queries and will print the response for each query.`,
 	Args:  cobra.MinimumNArgs(1),
 	RunE: func(cmd *cobra.Command, args []string) error {
-		if err := query.ExecuteQuery(args, cmd.Flags()); err != nil {
+		if err := query.Handler(args, cmd.Flags()); err != nil {
 			return err
 		}
 		return nil
@@ -36,6 +36,4 @@ var queryCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(queryCmd)
-	queryCmd.PersistentFlags().String("address", "http://localhost", "The address of the Prometheus to send queries to.")
-	queryCmd.PersistentFlags().String("port", ":9090", "Port to reach prometheus on")
 }
