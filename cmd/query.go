@@ -17,7 +17,7 @@ package cmd
 
 import (
 	"github.com/spf13/cobra"
-	"github.com/wyb1/prometheusClient/pkg/query"
+	"github.com/wyb1/promclient/pkg/query"
 )
 
 // queryCmd represents the query command

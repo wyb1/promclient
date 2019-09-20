@@ -16,7 +16,7 @@ limitations under the License.
 package main
 
 import (
-	"github.com/wyb1/prometheusClient/cmd"
+	"github.com/wyb1/promclient/cmd"
 )
 
 func main() {
