@@ -21,28 +21,4 @@ import (
 
 func main() {
 	cmd.Execute()
-	// ExampleAPI_Query()
 }
-
-// func ExampleAPI_Query() {
-// 	client, err := api.NewClient(api.Config{
-// 		Address: "http://localhost:9090",
-// 	})
-// 	if err != nil {
-// 		fmt.Printf("Error creating client: %v\n", err)
-// 		os.Exit(1)
-// 	}
-
-// 	api := v1.NewAPI(client)
-// 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
-// 	defer cancel()
-// 	result, warnings, err := api.Query(ctx, "up", time.Now())
-// 	if err != nil {
-// 		fmt.Printf("Error querying Prometheus: %v\n", err)
-// 		os.Exit(1)
-// 	}
-// 	if len(warnings) > 0 {
-// 		fmt.Printf("Warnings: %v\n", warnings)
-// 	}
-// 	fmt.Printf("Result:\n%v\n", result)
-// }
